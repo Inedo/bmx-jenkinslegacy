@@ -90,7 +90,7 @@ namespace Inedo.BuildMasterExtensions.Jenkins
             if (this.ExtractFilesToTargetDirectory)
             {
                 this.LogDebug("Extracting to...", this.Context.TargetDirectory);
-                fileOps.ExtractZipFile(remoteFileName, this.Context.TargetDirectory, true);
+                fileOps.ExtractZipFileAsync(remoteFileName, this.Context.TargetDirectory, FileCreationOptions.OverwriteReadOnly).WaitAndUnwrapExceptions();
             }
 
             this.LogInformation("Artifact successfully downloaded.");
